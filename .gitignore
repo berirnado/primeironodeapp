@@ -2,5 +2,5 @@ message.txt
 node_modules
 
 *.pug
-
+*.hbs
 
