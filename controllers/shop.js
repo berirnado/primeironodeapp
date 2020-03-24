@@ -32,3 +32,10 @@ exports.getAdminProducts = (req,res, next) => {
     })
 }
 
+exports.getCheckout = (req,res, next) => {
+    res.render('checkout',  {
+        docTitle: Checkout,
+        path: '/checkout'
+    })
+}
+
