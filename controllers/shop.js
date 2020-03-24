@@ -2,10 +2,13 @@ const Product = require('../models/product');
 
 
 exports.getIndex = (req,res, next) => {
-    res.render('shop/index', {
-        docTitle: 'My Shop',
-        path: '/'
-    })
+    Product.fetchAll((products) => {
+        res.render('shop/index', {
+            prods: products,
+            docTitle: 'My Shop',
+            path:'/'
+        });
+    });
 };
 
 exports.getProducts =  (req,res, next) => {
@@ -39,3 +42,9 @@ exports.getCheckout = (req,res, next) => {
     })
 }
 
+exports.getOrders = (req, res, next) => {
+    res.render('shop/orders', {
+        docTitle: 'Your Orders',
+        path: '/orders'
+    })
+}
