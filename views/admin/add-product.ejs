@@ -3,7 +3,9 @@
     <link rel="stylesheet" href="/css/product.css">
 </head>
 
-<%- include('../includes/navigation.ejs') %>
+<body>
+   <%- include('../includes/navigation.ejs') %>
+
     <main>
         <form class="product-form" action="/admin/add-product" method="POST">
             <div class="form-control">
@@ -26,5 +28,4 @@
             <button class="btn" type="submit">Add Product</button>
         </form>
     </main>
-
 <%- include('../includes/end.ejs') %>
