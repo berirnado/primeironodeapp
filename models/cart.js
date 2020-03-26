@@ -42,7 +42,6 @@ module.exports = class Cart {
     static deleteProduct(id, productPrice){
         fs.readFile(p, (err, fileContent) => {
             if (err){
-                console.log(err);
                 return;
             }
             const updatedCart = {...JSON.parse(fileContent)};

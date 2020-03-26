@@ -4,3 +4,5 @@ node_modules
 *.pug
 *.hbs
 
+util/database.js
+
