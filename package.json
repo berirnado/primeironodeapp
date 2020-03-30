@@ -1,32 +1,25 @@
 {
-  "name": "nodejs-curso-1",
+  "name": "nodejs-complete-guide",
   "version": "1.0.0",
-  "description": "Curso de NodeJS",
+  "description": "Complete Node.js Guide",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon app.js",
+    "start-server": "node app.js"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/berirnado/primeironodeapp.git"
-  },
-  "author": "Bernardo Simões Pires",
+  "author": "Maximilian Schwarzmüller",
   "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/berirnado/primeironodeapp/issues"
-  },
-  "homepage": "https://github.com/berirnado/primeironodeapp#readme",
   "devDependencies": {
-    "nodemon": "^2.0.2"
+    "nodemon": "^1.18.3"
   },
   "dependencies": {
-    "acorn": ">=5.7.4",
-    "body-parser": "^1.19.0",
-    "ejs": "^3.0.1",
-    "express": "^4.17.1",
-    "express-handlebars": "^3.0.2",
-    "mysql2": "^2.1.0",
-    "pug": "^2.0.4"
+    "body-parser": "^1.18.3",
+    "ejs": "^2.6.1",
+    "express": "^4.16.3",
+    "express-handlebars": "^3.0.0",
+    "mysql2": "^1.6.1",
+    "pug": "^2.0.3",
+    "sequelize": "^5.0.0-beta.11"
   }
 }
