@@ -35,7 +35,7 @@ class User {
 
     return db
       .collection("users")
-      .find({ _id: mongoDb.ObjectID(userId) })
+      .find({ _id: mongodb.ObjectID(userId) })
       .next();
   }
 }
