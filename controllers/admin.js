@@ -22,10 +22,25 @@ exports.getAddProduct = (req, res, next) => {
 
 exports.postAddProduct = (req, res, next) => {
   const title = req.body.title;
-  const imageUrl = req.body.imageUrl;
+  const image = req.file;
   const price = req.body.price;
   const description = req.body.description;
   const errors = validationResult(req);
+
+  if (!image) {
+    return res.render('admin/edit-product', {
+      pageTitle: 'Add Product',
+      path: '/admin/add-product',
+      editing: false,
+      errorMessage: 'The attached file is not a valid image!',
+      validationErrors: [],
+      oldInput: {
+        title: title,
+        price: price,
+        description: description
+      }
+    });
+  }
 
   if(!errors.isEmpty()) {
     console.log(errors.array());
@@ -37,12 +52,13 @@ exports.postAddProduct = (req, res, next) => {
       validationErrors: errors.array(),
       oldInput: {
         title: title,
-        imageUrl: imageUrl,
         price: price,
         description: description
       }
     });
   }
+
+  const imageUrl = image.path;
 
   const product = new Product({
     title: title,
@@ -59,20 +75,6 @@ exports.postAddProduct = (req, res, next) => {
       res.redirect('/admin/products');
     })
     .catch(err => {
-    //   return res.status(500).render('admin/edit-product', {
-    //     pageTitle: 'Add Product',
-    //     path: '/admin/add-product',
-    //     editing: false,
-    //     errorMessage: 'Database operation failed, please try again.',
-    //     validationErrors: [],
-    //     oldInput: {
-    //       title: title,
-    //       imageUrl: imageUrl,
-    //       price: price,
-    //       description: description
-    //     }
-    // })
-    // res.redirect('/500');
     const error = new Error(err);
     error.httpStatusCode = 500;
     return next(error);
@@ -116,7 +118,7 @@ exports.postEditProduct = (req, res, next) => {
   const prodId = req.body.productId;
   const updatedTitle = req.body.title;
   const updatedPrice = req.body.price;
-  const updatedImageUrl = req.body.imageUrl;
+  const image = req.file;
   const updatedDesc = req.body.description;
   const errors = validationResult(req);
 
@@ -138,7 +140,6 @@ exports.postEditProduct = (req, res, next) => {
         title: updatedTitle,
         price: updatedPrice,
         description: updatedDesc,
-        imageUrl: updatedImageUrl,
       }
     });
   })};
@@ -151,7 +152,9 @@ exports.postEditProduct = (req, res, next) => {
       product.title = updatedTitle;
       product.price = updatedPrice;
       product.description = updatedDesc;
-      product.imageUrl = updatedImageUrl;
+      if (image) {
+        product.imageUrl = image.path;
+      }
       return product.save()
       .then(result => {
         res.redirect('/admin/products');

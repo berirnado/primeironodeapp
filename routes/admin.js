@@ -19,8 +19,6 @@ router.post(
     [
         check('title', 'No numbers or special characters allowed in title')
         .isAlpha(),
-        check('imageUrl', 'Please enter a valid URL')
-        .isURL(),
     ],
     isAuth,
     adminController.postAddProduct);
@@ -32,8 +30,6 @@ router.post(
     [
         check('title', 'No numbers or special characters allowed in title')
         .isAlpha(),
-        check('imageUrl', 'Please enter a valid URL')
-        .isURL(),
     ],
     isAuth,
     adminController.postEditProduct);
